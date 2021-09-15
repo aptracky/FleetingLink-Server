@@ -1,0 +1,6 @@
+POST http://localhost:5000/api/url/shorten
+Content-Type: application/json
+
+{
+    "longUrl": "https://www.amazon.com/adidas-Superlite-Socks-6-Pack-Night/dp/B01JC07UEC/?_encoding=UTF8&pd_rd_w=fOcmW&pf_rd_p=138eb05e-0690-4979-a6da-7a70b321c201&pf_rd_r=FDHCGKV6PMMBPKD4RZG9&pd_rd_r=56f3fa02-b6b5-4131-aef3-84107a33efcb&pd_rd_wg=lv9xW&ref_=pd_gw_hl_comp_mis_psims"
+}
