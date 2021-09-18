@@ -10,6 +10,8 @@ const port = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 
+app.set('view engine', 'ejs');
+
 //Define Routes
 app.use('/', require('./routes/route-index'));
 app.use('/api/url', require('./routes/route-url'));

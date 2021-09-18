@@ -15,6 +15,8 @@ const UrlModel = require('../models/url');
 router.post('/shorten', async (req, res) => {
     const { longUrl } = req.body;
 
+    console.log(longUrl);
+
     if(!validURL.isUri(BaseURL)){
         return res.status(401).json('Bad Base Url');
     }
