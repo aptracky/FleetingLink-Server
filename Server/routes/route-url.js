@@ -13,23 +13,30 @@ const UrlModel = require('../models/url');
  * @description Create short URL
  */
 router.post('/shorten', async (req, res) => {
-    const { longUrl, urlCode } = req.body;
+    const { longUrl } = req.body;
+    let { urlCode } = req.body;
 
-    let newUrlCode = '';
+    let newUrlCode = null;
 
     if(!validURL.isUri(BaseURL)){
         return res.status(401).json('Bad Base Url');
     }
 
     //Validate the URL if it is passed in.
-    if (urlCode != '') {
-        newUrlCode = await UrlModel.findOne({ urlCode });
-        if(newUrlCode = null) {
-            urlCode = urlCode;
+    console.log(urlCode);
+    if (urlCode) {
+        try {
+            newUrlCode = await UrlModel.findOne({ urlCode });
+            if (newUrlCode == null){
+                newUrlCode = urlCode;
+            }
+        } catch(err) {
+            console.error(err);
         }
     } else {
-        urlCode = shortId.generate();
+        newUrlCode = shortId.generate();
     }
+
 
     //check long url
     if(validURL.isUri(longUrl)) {
@@ -39,10 +46,10 @@ router.post('/shorten', async (req, res) => {
             if(url) {
                 res.json(url)
             } else {
-                const shortUrl = BaseURL + '/' + urlCode;
+                const shortUrl = BaseURL + '/' + newUrlCode;
 
                 url = new UrlModel({
-                    urlCode,
+                    newUrlCode,
                     longUrl,
                     shortUrl,
                     date: new Date()
