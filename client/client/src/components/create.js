@@ -2,8 +2,7 @@ import * as React from 'react';
 import axios from "axios"; 
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box'
-import { Container, CssBaseline, TextField, Link } from '@mui/material';
-import { Typography } from '@mui/material';
+import { Container, CssBaseline, TextField, Link, Typography } from '@mui/material';
 
 
 const api = axios.create({
@@ -24,10 +23,11 @@ function Copyright(props) {
   }
 
 
-class SubmitForm extends React.Component {
+class Create extends React.Component {
     state = {
         longUrl: '',
-        shortUrl: ''
+        shortUrl: '',
+        urlCode: ''
     };
 
     /* This is where the magic happens 
@@ -35,7 +35,7 @@ class SubmitForm extends React.Component {
     handleSubmit = async event => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
-        await api.post('/', { longUrl: data.get('longUrl') })
+        await api.post('/', { longUrl: data.get('longUrl'), urlCode: data.get('urlCode') })
         .then(res=>{
             console.log(res);
             console.log(res.data);
@@ -79,8 +79,14 @@ class SubmitForm extends React.Component {
                             id="longUrl"
                             label="Your Long URL"
                             name="longUrl"
-                            autoComplete="longUrl"
                             autoFocus
+                        />
+                        <TextField 
+                            margin="normal"
+                            fullWidth
+                            id="urlCode"
+                            label="Your Custom Slug"
+                            name="urlCode"
                         />
                         <Button
                             type="submit"
@@ -104,4 +110,4 @@ class SubmitForm extends React.Component {
         );
     }
 }
-export default SubmitForm;
+export default Create;

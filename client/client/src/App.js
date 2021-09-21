@@ -1,14 +1,20 @@
 import './App.css';
-import { BrowserRouter as Router, Route } from "react-router-dom";
-import PlaceHolder from './components/placeholder';
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Create from './components/create';
+import Privacy from './components/privacy';
+import Login from './components/login';
+import PageNotFound from './components/404';
 
 
 function App() {
   return (
     <Router>
-      <div className="container">
-        <Route path="/" component={PlaceHolder} />
-      </div>
+      <Switch>
+          <Route exact path="/create" component={Create} />
+          <Route exact path="/privacy" component={Privacy} />
+          <Route exact path="/login" component={Login} />
+          <Route component={PageNotFound} />
+        </Switch>
     </Router>
   );
 }

@@ -14,7 +14,7 @@ const UrlModel = require('../models/url');
  */
 router.post('/shorten', async (req, res) => {
     const { longUrl } = req.body;
-    let { urlCode } = req.body;
+    const { urlCode } = req.body;
 
     let newUrlCode = null;
 
@@ -29,6 +29,7 @@ router.post('/shorten', async (req, res) => {
             newUrlCode = await UrlModel.findOne({ urlCode });
             if (newUrlCode == null){
                 newUrlCode = urlCode;
+                console.log(newUrlCode);
             }
         } catch(err) {
             console.error(err);

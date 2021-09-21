@@ -9,7 +9,8 @@ const UrlModel = require('../models/url');
  */
 router.get('/:code', async (req, res) => {
     try {
-        const url = await UrlModel.findOne({ urlCode: req.params.code });
+        const { urlCode } = req.params.code;
+        const url = await UrlModel.findOne({ urlCode: urlCode });
 
         if(url) {
             return res.redirect(url.longUrl);
