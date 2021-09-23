@@ -1,4 +1,5 @@
 import * as React from 'react';
+import styles from './create.module.css';
 import axios from "axios"; 
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box'
@@ -24,13 +25,30 @@ function Copyright(props) {
 
 
 class Create extends React.Component {
-    state = {
-        longUrl: '',
-        shortUrl: '',
-        urlCode: '',
-        err: false,
-        errMessage: ''
-    };
+    constructor(props) {
+        super(props)
+        this.state = {
+            longUrl: '',
+            shortUrl: '',
+            urlCode: '',
+            err: false,
+            errMessage: ''
+        };
+
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    handleChange = event =>{
+        const target = event.target;
+        const longUrl = target.longUrl;
+        const urlCode = target.urlCode;
+
+        this.setState({
+            longUrl: longUrl,
+            urlCode: urlCode
+        });
+    }
 
     /* This is where the magic happens 
     */
@@ -56,83 +74,28 @@ class Create extends React.Component {
         });
     }
 
-    handleChange = event =>{
-        this.setState({ longUrl: event.target.value});
-    }
-
     render() {
         return (
-            <Container component="main" maxWidth="md">
-                <CssBaseline />
-                <Collapse in={ this.state.err }>
-                    <Alert
-                    action={
-                        <IconButton
-                        aria-label="close"
-                        color="inherit"
-                        size="small"
-                        onClick={() => {
-                            this.setState({ err: false });
-                        }}
-                        >
-                        X
-                        </IconButton>
-                    }
-                    sx={{ mb: 2 }}
-                    severity="error"
-                    >
-                    {this.state.errorMessage}
-                    </Alert>
-                </Collapse>
-                <Box
-                    sx = {{
-                        marginTop: 8, 
-                        display: 'flex',
-                        flexDirection: 'column',
-                    }} 
-                    textAlign='center'
-                    >
-
-                    <Typography variant="h1" align="center">
-                        FleetingLink
-                    </Typography>
-
-                    <Box component="form" onSubmit={this.handleSubmit} noValidate sx={{ mt: 1 }}>
-                        <TextField 
-                            margin="normal"
-                            required
-                            fullWidth
-                            id="longUrl"
-                            label="Your Long URL"
-                            name="longUrl"
-                            autoFocus
-                        />
-                        <TextField 
-                            margin="normal"
-                            fullWidth
-                            id="urlCode"
-                            label="Your Custom Slug"
-                            name="urlCode"
-                        />
-                        <Button
-                            type="submit"
-                            fullwidth
-                            variant="contained"
-                            sx = {{ mt: 2, mb: 2}}
-                        > Submit </Button>
-                    </Box>
-
-                <Typography variant="h5" align="center" sx ={{ mt: 4 }}>
-                    New Link:
-                </Typography>
-
-                <Link color="inherit" href={this.state.shortUrl}>
-                    {this.state.shortUrl}
-                </Link>
-
-                </Box>
-                <Copyright sx={{ mt: 8, mb: 4 }} />
-            </Container>
+            <div className={styles.container}>
+                <div className={styles.backgroundTexture}></div>
+                <div className={styles.text}>Temporary and memorable links ---</div>
+                <div className={styles.cardBehind} /> 
+                <div className={styles.card}>
+                    <form onSubmit={this.handleSubmit}>
+                        <label className={styles.label}>
+                            Link to Shorten:
+                            <input name="longUrl" type="text" value={this.state.longUrl} onChange={this.handleChange} />
+                        </label>
+                        <br />
+                        <label className={styles.label}>
+                            Custom Alias:
+                            <input name="urlCode" type="text" value={this.state.urlCode} onChange={this.handleChange} />
+                        </label>
+                        <br />
+                        <input className={styles.submit} type="submit" value="Submit" /> 
+                    </form>
+                </div>
+            </div>
         );
     }
 }

@@ -1,0 +1,102 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins');
+
+.container {
+    background: linear-gradient(90deg, #C8D4E4 50%, #F1F1F1 50%);
+    width: 100vw;
+    height: 100vh;
+}
+
+.card {
+    position: absolute;
+    top: 30.5em;
+    left: 43.4375em;
+    width: 60.625em;
+    height: 20em;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border-radius: 0.1875em;
+    opacity: 1;
+    z-index: 1;
+    padding: 1em;
+}
+
+.cardBehind {
+    position: absolute;
+    top: 28em;
+    left: 46.06em;
+    width: 60.625em;
+    height: 20em;
+    background: #2A2A2A 0% 0% no-repeat padding-box;
+    border-radius: 0.1875em;
+    opacity: 1;
+}
+
+.form {
+    padding: 2em;
+}
+
+.label {
+    font-family: 'Poppins';
+    font-size: 20;
+}
+
+.submit {
+    top: 52.875em;
+    left: 49.875em;
+    width: 73em;
+    height: 4.5em;
+    background: #4E87D4 0% 0% no-repeat padding-box;
+    color: white;
+    border-radius: 3px;
+    opacity: 1;
+}
+
+.text {
+    position: absolute;
+    top: 1em;
+    left: 2em;
+    width: 8em;
+    height: 20.75em;
+    font: normal normal bold 80px/110px Poppins;
+    letter-spacing: 0px;
+    color: #2A2A2A;
+    opacity: 1;
+}
+
+.backgroundTexture {
+    position: absolute;
+    top: 605px;
+    left: -289.55078125px;
+    width: 1430px;
+    height: 802px;
+    transform: matrix(0.97, 0.22, -0.22, 0.97, 0, 0);
+    background: transparent url('../PlusPattern.svg') 0% 0% no-repeat padding-box;
+    opacity: 1;
+    z-index: 1;
+}
+
+html, body {
+    overflow: hidden;
+    -webkit-overflow-scrolling: hidden;
+}
+
+body {
+    overflow: hidden;
+    -webkit-overflow-scrolling: hidden;
+}
+
+div {
+    overflow: hidden;
+    -webkit-overflow-scrolling: hidden;
+}
+
+input[type=text] {
+    font-family: 'Poppins';
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+}
+
+input[type=text]:focus {
+    border: 3px solid #555;
+  }

@@ -1,6 +1,6 @@
 import React from 'react'
 
-const PageNotFound = () => {
+function PageNotFound() {
     return (
         <div id="wrapper">
             <img src="https://i.imgur.com/qIufhof.png" />
