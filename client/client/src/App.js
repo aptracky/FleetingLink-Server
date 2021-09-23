@@ -10,7 +10,7 @@ function App() {
   return (
     <Router>
       <Switch>
-          <Route exact path="/create" component={Create} />
+          <Route exact path="/" component={Create} />
           <Route exact path="/privacy" component={Privacy} />
           <Route exact path="/login" component={Login} />
           <Route component={PageNotFound} />

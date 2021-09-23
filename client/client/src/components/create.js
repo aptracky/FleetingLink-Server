@@ -2,7 +2,7 @@ import * as React from 'react';
 import axios from "axios"; 
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box'
-import { Container, CssBaseline, TextField, Link, Typography } from '@mui/material';
+import { Container, CssBaseline, TextField, Link, Typography, Collapse, Alert, IconButton } from '@mui/material';
 
 
 const api = axios.create({
@@ -14,7 +14,7 @@ function Copyright(props) {
       <Typography variant="body2" color="text.secondary" align="center" {...props}>
         {'Copyright © '}
         <Link color="inherit" href="http://localhost:3000/">
-          Slug.Pizza
+          FleetingLink
         </Link>{' '}
         {new Date().getFullYear()}
         {'.'}
@@ -27,7 +27,9 @@ class Create extends React.Component {
     state = {
         longUrl: '',
         shortUrl: '',
-        urlCode: ''
+        urlCode: '',
+        err: false,
+        errMessage: ''
     };
 
     /* This is where the magic happens 
@@ -37,8 +39,6 @@ class Create extends React.Component {
         const data = new FormData(event.currentTarget);
         await api.post('/', { longUrl: data.get('longUrl'), urlCode: data.get('urlCode') })
         .then(res=>{
-            console.log(res);
-            console.log(res.data);
             if(res.data.shortUrl == null) {
                 this.setState({ shortUrl: 'Error' })
                 console.log(this.state.shortUrl)
@@ -49,7 +49,11 @@ class Create extends React.Component {
             }
             this.setState.longUrl = '';
         })
-        .catch(error => console.error(`Error: ${error}`));
+        .catch(error => { 
+            console.error(error);
+            this.setState({ err: true });
+            this.setState({ errorMessage: error.message });
+        });
     }
 
     handleChange = event =>{
@@ -60,6 +64,26 @@ class Create extends React.Component {
         return (
             <Container component="main" maxWidth="md">
                 <CssBaseline />
+                <Collapse in={ this.state.err }>
+                    <Alert
+                    action={
+                        <IconButton
+                        aria-label="close"
+                        color="inherit"
+                        size="small"
+                        onClick={() => {
+                            this.setState({ err: false });
+                        }}
+                        >
+                        X
+                        </IconButton>
+                    }
+                    sx={{ mb: 2 }}
+                    severity="error"
+                    >
+                    {this.state.errorMessage}
+                    </Alert>
+                </Collapse>
                 <Box
                     sx = {{
                         marginTop: 8, 
@@ -68,9 +92,11 @@ class Create extends React.Component {
                     }} 
                     textAlign='center'
                     >
+
                     <Typography variant="h1" align="center">
-                        Slug.Pizza
+                        FleetingLink
                     </Typography>
+
                     <Box component="form" onSubmit={this.handleSubmit} noValidate sx={{ mt: 1 }}>
                         <TextField 
                             margin="normal"
