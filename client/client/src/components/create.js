@@ -1,28 +1,11 @@
 import * as React from 'react';
 import styles from './create.module.css';
 import axios from "axios"; 
-import Button from '@mui/material/Button';
-import Box from '@mui/material/Box'
-import { Container, CssBaseline, TextField, Link, Typography, Collapse, Alert, IconButton } from '@mui/material';
 
 
 const api = axios.create({
     baseURL: 'http://localhost:5000/api/url/shorten'
 })
-
-function Copyright(props) {
-    return (
-      <Typography variant="body2" color="text.secondary" align="center" {...props}>
-        {'Copyright © '}
-        <Link color="inherit" href="http://localhost:3000/">
-          FleetingLink
-        </Link>{' '}
-        {new Date().getFullYear()}
-        {'.'}
-      </Typography>
-    );
-  }
-
 
 class Create extends React.Component {
     constructor(props) {
