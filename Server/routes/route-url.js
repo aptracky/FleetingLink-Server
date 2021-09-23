@@ -5,7 +5,6 @@ const shortId = require('shortid');
 require('dotenv').config();
 
 const BaseURL = process.env.BASEURL;
-
 const UrlModel = require('../models/url');
 
 /**
@@ -16,56 +15,49 @@ router.post('/shorten', async (req, res) => {
     const { longUrl } = req.body;
     const { urlCode } = req.body;
 
-    let newUrlCode = null;
+    let code = urlCode;
 
     if(!validURL.isUri(BaseURL)){
         return res.status(401).json('Bad Base Url');
     }
 
     //Validate the URL if it is passed in.
-    console.log(urlCode);
-    if (urlCode) {
+    console.log(code);
+    if (code) {
         try {
-            newUrlCode = await UrlModel.findOne({ urlCode });
-            if (newUrlCode == null){
-                newUrlCode = urlCode;
-                console.log(newUrlCode);
+            let alreadyExsists = await (await UrlModel.find({ code })).toString();
+            console.log(alreadyExsists);
+            if(alreadyExsists){
+                return res.status(400).json('This alias already exsists. Please try again.');
             }
         } catch(err) {
-            console.error(err);
+            return res.status(500).json("Server Error");
         }
     } else {
-        newUrlCode = shortId.generate();
+        code = shortId.generate();
     }
 
 
     //check long url
     if(validURL.isUri(longUrl)) {
         try {
-            let url = await UrlModel.findOne({ longUrl });
+            const shortUrl = BaseURL + '/' + code;
 
-            if(url) {
-                res.json(url)
-            } else {
-                const shortUrl = BaseURL + '/' + newUrlCode;
+            url = new UrlModel({
+                code,
+                longUrl,
+                shortUrl,
+                date: new Date()
+            });
 
-                url = new UrlModel({
-                    newUrlCode,
-                    longUrl,
-                    shortUrl,
-                    date: new Date()
-                });
+            await url.save();
 
-                await url.save();
-
-                res.json(url);
-            }
+            return res.json(url);
         } catch (err) {
-            console.error(err);
-            res.status(500).json('Server Error Generating');
+            return res.status(500).json('Server Error Generating');
         }
     } else {
-        res.status(401).json('Invalid long url');
+        return res.status(401).json('Invalid long url');
     }
 })
 

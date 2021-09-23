@@ -1,16 +1,16 @@
 const express = require('express');
-const router = express.Router();
+const Router = express.Router();
 const UrlModel = require('../models/url');
 
 
 /**
  * @Router Get /:urlCode
- * @description Redirect to the original or long url
+ * @description Redirect to the long url
  */
-router.get('/:code', async (req, res) => {
+Router.get('/:urlCode', async (req, res) => {
     try {
-        const { urlCode } = req.params.code;
-        const url = await UrlModel.findOne({ urlCode: urlCode });
+        console.log(req.params.urlCode);
+        const url = await UrlModel.findOne({ urlCode: req.params.urlCode });
 
         if(url) {
             return res.redirect(url.longUrl);
@@ -23,4 +23,4 @@ router.get('/:code', async (req, res) => {
     }
 });
 
-module.exports = router;
+module.exports = Router;
