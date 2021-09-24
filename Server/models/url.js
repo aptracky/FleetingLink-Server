@@ -13,10 +13,12 @@ const urlSchema = new mongoose.Schema({
     shortUrl: {
         type: String
     },
-    date: {
-        type: String,
+    createdAt: {
+        type: Date,
         default: Date.now
     }
 });
+
+urlSchema.index({createdAt: 1},{expireAfterSeconds: 2592000});
 
 module.exports = mongoose.model('Url', urlSchema);
