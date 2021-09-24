@@ -60,22 +60,26 @@ class Create extends React.Component {
     render() {
         return (
             <div className={styles.container}>
+                <div className={styles.logo} />
                 <div className={styles.backgroundTexture}></div>
-                <div className={styles.text}>Temporary and memorable links ---</div>
+                <div className={styles.text}>Temporary and memorable links</div>
                 <div className={styles.cardBehind} /> 
                 <div className={styles.card}>
                     <form onSubmit={this.handleSubmit}>
-                        <label className={styles.label}>
-                            Link to Shorten:
-                            <input name="longUrl" type="text" value={this.state.longUrl} onChange={this.handleChange} />
-                        </label>
-                        <br />
-                        <label className={styles.label}>
-                            Custom Alias:
-                            <input name="urlCode" type="text" value={this.state.urlCode} onChange={this.handleChange} />
-                        </label>
-                        <br />
-                        <input className={styles.submit} type="submit" value="Submit" /> 
+                        <div className={styles.formGroup}>
+                            <label>
+                                PASTE LINK:
+                                <input name="longUrl" type="text" value={this.state.longUrl} onChange={this.handleChange} placeholder="www.url.com" />
+                            </label>
+                            <br />
+                            <label>
+                                ENTER ALIAS:
+                                <div className="placeholder" />
+                                <input name="urlCode" type="text" value={this.state.urlCode} onChange={this.handleChange} placeholder="alias"/>
+                            </label>
+                            <br />
+                            <input className={styles.submit} type="submit" value="Submit" /> 
+                        </div>
                     </form>
                 </div>
             </div>
