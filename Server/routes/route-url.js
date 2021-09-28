@@ -6,7 +6,6 @@ require('dotenv').config();
 
 const BaseURL = process.env.BASEURL;
 const UrlModel = require('../models/url');
-const { db } = require('../models/url');
 
 /**
  * @Route Post /api/url/shorten

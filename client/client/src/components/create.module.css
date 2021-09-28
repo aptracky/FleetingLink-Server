@@ -2,29 +2,29 @@
 
 .container {
     text-align: center;
-    margin: 0 1em;
+    margin: 0;
 }
 
 .card {
     position: absolute;
-    width: 30em;
+    top: 45%;
+    left: 45%;
+    width: 40em;
     height: 20em;
-    margin: 30em 0em 0em 25em;
     background: #FFFFFF 0% 0% no-repeat padding-box;
     border-radius: 3px;
     opacity: 1;
-    z-index: 1;
-    padding-top: 2em;
-    padding-left: 8em;
-    padding-right: 8em;
-    padding-bottom: 8.0em;
+    z-index: 10;
+    padding: 0em 1em 6em 1em;
+    align-items: center;
 }
 
 .cardBehind {
     position: absolute;
+    top: 42.5%;
+    left: 46%;
     width: 42.625em;
     height: 24em;
-    margin: 28em 0 0 30em;
     background: #2A2A2A 0% 0% no-repeat padding-box;
     border-radius: 0.1875em;
     opacity: 1;
@@ -36,26 +36,25 @@
     margin: 7em auto;
 }
 
+/* Submit Button */
 .submit {
-    position: inherit;
-    font-family: Poppins;
-    top: 52.875em;
-    left: 49.875em;
     width: 100%;
-    background: #4E87D4 0% 0% no-repeat padding-box;
-    color: white;
-    border-radius: 3px;
-    opacity: 1;
-    margin-top: 1em;
+    font-family: Poppins;
+    background: #4E87D4;
     padding: 1em;
 }
 
+.submit:hover {
+    transform: scale(1.2);
+}
+
+/* Primary Text */
 .text {
-    position: absolute;
-    margin: 2em 0 0 7em;
     width: 8em;
-    height: 20.75em;
-    font: normal normal bold 70px/80px Poppins;
+    height: auto;
+    margin-left: 2em;
+    margin-top: 0.5em;
+    font: normal normal bold 80px/110px Poppins;
     text-align: left;
     letter-spacing: 0px;
     color: #2A2A2A;
@@ -71,27 +70,14 @@
     width: 2.5em;
 }
 
-.backgroundTexture {
-    position: absolute;
-    top: 60em;
-    left: -29em;
-    width: 143em;
-    height: 80.2em;
-    transform: matrix(0.98, 0.15, -0.15, 0.98, 0, 0);
-    background: transparent url('../PlusPattern.svg') 0% 0% no-repeat padding-box;
-    opacity: 1;
-    z-index: 1;
-}
-
+/* Logo */
 .logo {
-    position: absolute;
-    width: 20em;
-    height: 10em;
+    width: 14em;
+    height: auto;
+    float: left;
+    margin-left: 10em;
+    margin-top: 3em;
     box-sizing: border-box;
-    margin: 3em 0 0 31em;
-    background: transparent url('../Logo.svg') 0% 0% no-repeat padding-box;
-    overflow: visible;
-    opacity: 1;
 }
 
 html, body {
@@ -101,7 +87,7 @@ html, body {
 
 body {
     font-family: Poppins;
-    background: linear-gradient(#C8D4E4 50%, #F1F1F1 50%) no-repeat fixed;
+    background: linear-gradient(90deg, #C8D4E4 50%, #F1F1F1 50%) no-repeat fixed;
     width: 100vw;
     height: 100vh;
     margin: 0;
@@ -117,14 +103,64 @@ div {
 input[type=text] {
     font-family: 'Poppins';
     width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    border: 1px solid #2A2A2A8F;
-    border-radius: 3px;
+    padding: 1.2em;
+    margin: 1em 0;
+    border: .1em solid #2A2A2A8F;
+    border-radius: .3em;
     opacity: 1;
     box-sizing: border-box;
 }
 
 input[type=text]:focus {
-    border: 3px solid #555;
-  }
+    border: .1em solid #555;
+}
+
+/* Navigation */
+.navigation {
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 2em;
+}
+
+.navigation ul{
+    display: flex;
+    float: right;
+    list-style-type: none;
+}
+
+.navigation ul li {
+    color: #2A2A2A;
+    padding-right: 1em;
+    font: normal normal normal 20px/30px Poppins;
+}
+
+.navigation ul li a{
+    text-decoration: none;
+    color: #2A2A2A;
+}
+
+.backgroundTexture {
+    position: absolute;
+    top: 35em;
+    left: -20em;
+    width: 143em;
+    height: 80.2em;
+    transform: matrix(0.98, 0.15, -0.15, 0.98, 0, 0);
+    background: transparent url('../PlusPattern.svg') 0% 0% no-repeat padding-box;
+    opacity: 1;
+    z-index: 1;
+}
+
+.borderBox {
+    position: absolute;
+    top: 25%;
+    left: 49.9%;
+    width: 45em;
+    height: 20em;
+    display: inline-block;
+    border: 4px solid #2A2A2A;
+    padding: 1em;
+    z-index: 9;
+    border-color: #2A2A2A #2A2A2A #2A2A2A transparent;
+    border-radius: 0.3em;
+}

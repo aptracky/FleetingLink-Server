@@ -1,6 +1,7 @@
 import * as React from 'react';
-import styles from './create.module.css';
-import axios from "axios"; 
+import styles from '../components/create.module.css';
+import axios from 'axios'; 
+import logo from '../Logo.svg';
 
 
 const api = axios.create({
@@ -60,9 +61,16 @@ class Create extends React.Component {
     render() {
         return (
             <div className={styles.container}>
-                <div className={styles.logo} />
-                <div className={styles.backgroundTexture}></div>
+                <a href="https://fleetinglinks.com/"><img className={styles.logo} src={logo} alt="Logo"></img></a>
+                <div className={styles.navigation}>
+                    <ul>
+                        <li>Usage</li>
+                        <li>About</li>
+                        <li>Contact</li>
+                    </ul>
+                </div>
                 <div className={styles.text}>Temporary and memorable links</div>
+                <div className={styles.borderBox} />
                 <div className={styles.cardBehind} /> 
                 <div className={styles.card}>
                     <form onSubmit={this.handleSubmit}>
@@ -74,7 +82,6 @@ class Create extends React.Component {
                             <br />
                             <label>
                                 ENTER ALIAS:
-                                <div className="placeholder" />
                                 <input name="urlCode" type="text" value={this.state.urlCode} onChange={this.handleChange} placeholder="alias"/>
                             </label>
                             <br />
@@ -82,8 +89,10 @@ class Create extends React.Component {
                         </div>
                     </form>
                 </div>
+                <div className={styles.backgroundTexture} />
             </div>
         );
     }
 }
+
 export default Create;
