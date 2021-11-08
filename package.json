@@ -4,6 +4,8 @@
   "description": "Slug on Pizza",
   "main": "index.js",
   "scripts": {
+      "heroku-prebuild": "npm install -f",
+      "heroku-postbuild": "npm start",
       "start": "node index.js"
   },
   "engines": {
