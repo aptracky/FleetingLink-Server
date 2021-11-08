@@ -20,3 +20,5 @@ app.use('/api/url', require('./routes/route-url'));
 connectDB();
 
 app.listen(port, () => console.log(`Server running on port ${port}`));
+
+app.get('/', (req, res) => { res.send('Hello from Express!') });
