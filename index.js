@@ -13,6 +13,7 @@ app.use(express.json());
 app.set('view engine', 'ejs');
 
 //Define Routes
+app.use('/hello', require('./routes/route-hello'));
 app.use('/', require('./routes/route-index'));
 app.use('/api/url', require('./routes/route-url'));
 
@@ -20,5 +21,3 @@ app.use('/api/url', require('./routes/route-url'));
 connectDB();
 
 app.listen(port, () => console.log(`Server running on port ${port}`));
-
-app.get('/', (req, res) => { res.send('Hello from Express!') });
