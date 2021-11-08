@@ -1,5 +1,8 @@
 {
+  "short_name": "FleetingLink",
   "name": "client",
+  "homepage": "http://fleetinglink.com",
+  "description": "Fleeting is for the Boys!",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

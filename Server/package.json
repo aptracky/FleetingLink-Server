@@ -4,8 +4,11 @@
   "description": "Slug on Pizza",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "dev": "nodemon index.js"
+      "start": "node Server/index.js",
+      "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install npm && run build"
+  },
+  "engines": {
+      "node": "10.16.0"
   },
   "author": "Andrew Peterson",
   "license": "ISC",
