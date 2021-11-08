@@ -4,8 +4,7 @@
   "description": "Slug on Pizza",
   "main": "index.js",
   "scripts": {
-      "start": "node index.js",
-      "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install npm && run build"
+      "start": "node index.js"
   },
   "engines": {
       "node": "10.16.0"
